@@ -1,0 +1,212 @@
+{
+  "itinerari": [
+    {
+      "id": "bernini_chiese",
+      "nome": "Le Chiese di Roma itinerario",
+      "sottotitolo": "Roma Barocca: Sulle tracce di Gian Lorenzo Bernini",
+      "personaggio": {
+        "nome": "Gian Lorenzo Bernini",
+        "anni": "1598-1680",
+        "professione":"Scultore, urbanista, architetto, pittore, scenografo, commediografo e costumista",
+        "nazionalita": "Italiana",
+        "biografia_breve": "Protagonista assoluto del Barocco romano, Bernini ha trasformato il marmo in materia viva, infondendo dinamismo e una profonda carica teatrale in ogni sua creazione.", 
+        "immagine": "assets/personaggi/bernini.jpg",
+        "opere_correlate": [
+          "Galleria Borghese: Apollo e Dafne (1623-1625), Ratto di Proserpina (1621-1622), Enea, Anchise e ascanio (1618-1619), David (1623,1624)",
+          "Chiesa di Santa Maria della Vittoria",
+          "Chiesa di Sant'Andrea al Quirinale",
+          "Chiesa di Santa Bibiana"
+
+        ]
+      },
+      "tema": "Arte Barocca e Architettura Sacra",
+      "categoria": "Storia e Cultura",
+      "durata_totale_ore": 8,
+      "difficoltà": "facile",
+      "immagine_copertina": "https://www.beculture.it/itinerario-nella-roma-barocca/",
+      "distanza_totale_km": 5,
+      "periodo_consigliato": "Primavera/Autunno (temperature miti)",
+      "stagione_migliore": ["marzo", "aprile", "maggio", "settembre", "ottobre"],
+      "descrizione": "Un percorso esclusivo tra le chiese firmate da Bernini, dove la fede incontra l'artificio barocco. Segui le tracce dello scultore che ha trasformato Roma in una galleria a cielo aperto, scoprendo i dettagli nascosti e le soluzioni ingegnose che hanno reso immortale il suo stile.",
+      "note_logistiche": "Portare acqua, cappello e scarpe comode.",
+      "costo_stimato": "Ticket di ingresso alla Galleria Borghese 18,00€ (eccetto la prima domenica del mese in cui l'ingresso è gratuito), visita gratuita alla Chiesa di Santa Maria della Vittoria, ingresso gratuito alla Chiesa di Sant'Andreal al Quirinale, ingresso gratuito alla Chiesa di Santa Bibiana",
+      "tappe": [
+        {
+          "numero": 1,
+          "poi_id": "Galleria_Borghese",
+          "orario_consigliato": "09:00",
+          "momento_giornata": "mattina",
+          "durata_visita_min": 120,
+          "nome": "Galleria Borghese - I capolavori scultorei di Bernini",
+          "descrizione_breve": "Situata all'interno del parco di Villa Borghese a Roma, la Galleria Borghese è uno dei musei più importanti della città. Costruita nel XVII secondolo come residenza del cardinale Scipione Borghese, ospita una straordinaria collezione di dipinti e sculture barocche.",
+          "immagine": "https://www.tripadvisor.it/Attraction_Review-g187791-d522812-Reviews-Galleria_Borghese-Rome_Lazio.html",
+          "indicazioni_arrivo": "Metro A (Flaminio o Spagna + passeggiata nel parco oppure Bus 490/495. Ingresso tassativo all'orario di prenotazione; si consiglia di arrivare 30 minuti prima., oppure Bus 926. Aprire cancello principale Villa Giulia alle 6:00 (verificare possibilità accesso anticipato).",
+          "opere_principali": {
+            "Apollo e Dafne": {
+              "data": "1622-1625",
+              "materiale": "Marmo",
+              "altezza": "243 cm",
+              "coordinate": "41°54′50″N 12°29′31″E",
+              "descrizione": " Considerata l’apice del virtuosismo berniniano, l’opera raffigura la ninfa mentre si trasforma in alloro nel momento in cui viene raggiunta da Apollo. Foglie e radici sembrano nascere dal marmo, catturando con straordinaria precisione l’istante della metamorfosi.",
+              "immagine": "https://it.wikipedia.org/wiki/Apollo_e_Dafne_%28Bernini%29"
+            },
+            "Ratto di Proserpina": {
+              "data": "1621-1622",
+              "materiale": "Marmo di Carrara",
+              "altezza": "255 cm; esclusa la base 109 cm",
+              "coordinate": "41°54′50.4″N 12°29′31.2″E",
+              "descrizione": "Plutone affonda le dita nella coscia di Proserpina; la durezza del marmo riesce a rendere la sorprendente morbidezza della carne, creando una scena di intenso realismo drammatico.",
+              "immagine": "https://it.wikipedia.org/wiki/Ratto_di_Proserpina_%28Bernini%29"
+            },
+            "Enea, Anchise e Ascanio": {
+              "data": "1618-1619",
+              "materiale": "Marmo",
+              "altezza": "220 cm",
+              "coordinate": "41°54′50.4″N 12°29′31.2″E",
+              "descrizione": "L’opera raffigura la fuga di Enea da Troia mentre porta sulle spalle il padre Anchise e guida il figlio Ascanio, simboleggiando il passaggio tra le generazioni.",
+              "immagine": "https://it.wikipedia.org/wiki/Enea,_Anchise_e_Ascanio"
+            },
+            "David": {
+              "data": "1623-1624",
+              "materiale":"Marmo",
+              "altezza": "170 cm",
+              "coordinate": "41°54′50.4″N 12°29′31.2″E",
+              "descrizione": "Un David rappresentato in piena azione, avvitato su se stesso nel momento massimo di tensione, subito prima di scagliare la pietra.",
+              "immagine": "https://it.wikipedia.org/wiki/David_%28Bernini%29"
+            }
+          },
+          "metadata": {
+            "accessibilità": "ingresso a pagamento (€18)",
+            "orari_standard": "09:00-19:00, dal martedi alla domenica (ultimo ingresso alle ore 17:45)",
+            "servizi": ["toilette", "guardaroba", "bookshop", "biblioteca", "audioguide", "caffetteria - ristorazione"]
+          }
+        },
+        {
+          "numero": 2,
+          "poi_id": "Chiesa_di_Santa_Maria_della_Vittoria",
+          "orario_consigliato": "11:20",
+          "momento_giornata": "tarda mattinata",
+          "durata_visita_min": 60,
+          "nome": "Chiesa di Santa Maria della Vittoria",
+          "descrizione_breve": "La Chiesa di Santa Maria della Vittoria è un gioiello del Barocco, trasformata in un palcoscenico teatrale grazie al tocco di Gian Lorenzo Bernini, che custodisce l'Estasi di Santa Teresa d'Avila.",
+          "indicazioni_arrivo": "Da Galleria Borghese: passeggiata a piedi",
+          "tempo_spostamento_da_tappa_precedente": {
+            "a_piedi": "25 min",
+            "distanza_km": 1.2
+          },
+          "esperienza_culturale": {
+            "Estasi di Santa Teresa d'Avila": {
+              "data": "1647-1652",
+              "materiale": "Marmo e bronzo dorato per i raggi divini",
+              "altezza": "350 cm",
+              "coordinate": "41°54′17″N 12°29′39″E",
+              "descrizione": "L'Estasi di Santa Teresa d'Avila è un capolavoro marmoreo di straordinaria intensità emotiva e sensualità, dove luce, marmi policromi e architettura si fondono per narrare il divino in un'esperienza sensoriale unica.",
+              "immagine": "https://it.wikipedia.org/wiki/Estasi_di_santa_Teresa_d%27Avila"
+            }
+          },
+          "metadata": {
+            "accessibilita": "Ingresso gratuito",
+            "orari_standard": "Tutti i giorni dalle ore 08:30 alle ore 12:00 e dalle ore 16:00 alle ore 18:00. La domenica è visitabile, tranne durante le celebrazioni religiose",
+            "informazioni utili": "E' richiesto un abbigliamento adeguato (spalle e ginocchia coperte) ed è consentito fotografare"
+          }
+        },
+        {
+          "poi_id": "Hosteria Romana",
+          "orario_consigliato": "12:10",
+          "momento_giornata": "mezzogiorno",
+          "esperienza": "La pausa pranzo permette di scoprire i sapori autentici di Roma. Tra i piatti tipici si trovano l’amatriciana, la carbonara e il cacio e pepe, veri simboli della tradizione gastronomica romana, accompagnati da dolci locali come il maritozzo con la panna. Ogni portata offre un assaggio della città, trasformando il pranzo in un’incredibile esperienza culinaria.",
+          "immagine_amatriciana": "https://www.cucchiaio.it/ricetta/ricetta-bucatini-allamatriciana/",
+          "immagine_carbonara": "https://www.lacucinaimperfetta.com/spaghetti-alla-carbonara/",
+          "immagine_cacio_e_pepe": "https://www.todis.it/blog/pasta-cacio-e-pepe-la-ricetta-per-farla-davvero-cremosa/",
+          "immagine_maritozzo_con_la_panna": "https://www.ilcuoreinpentola.it/ricette/dolci/maritozzi-alla-panna/",
+          "indicazioni_arrivo": "Da Chiesa di Santa Maria della Vittoria: 10 min a piedi.",
+          "tempo_spostamento_da_tappa_precedente": {
+            "a_piedi": "10 min",
+            "distanza_km": 0.80
+          },
+          "metadata": {
+            "giorni_di_apertura": "Aperto sia a pranzo sia a cena dal martedì al sabato. Il lunedì è aperto solamente a cena, mentre la domenica è chiuso tutto il giorno",
+            "servizi": ["Ristorazione e cucina", "Servizi igienici", "Wi-Fi"],
+            "Prenotazione": "E' fortemente consigliata la prenotazione.",
+            "emozione_target": "Curiosità, scoperta, esplorazione di sapori."
+          }
+        },
+        {
+          "numero": 3,
+          "poi_id": "Chiesa_di_Sant'Andrea_al_Quirinale",
+          "orario_consigliato": "14:15",
+          "durata_visita_min": 45,
+          "nome": "Chiesa di Sant'Andrea al Quirinale: una piccola chiesa, un grande spettacolo barocco",
+          "descrizione_breve": "La Chiesa di Sant’Andrea al Quirinale è uno dei capolavori più raffinati di Gian Lorenzo Bernini. Progettata come un vero e proprio teatro sacro, l’obiettivo dell’architetto era quello di guidare il visitatore in un percorso spirituale, utilizzando lo spazio, la luce e la disposizione degli elementi architettonici per creare un’atmosfera suggestiva e coinvolgente. Entrando nella chiesa, lo sguardo viene naturalmente attirato verso l’altare, che diventa il centro visivo e simbolico dell’intero ambiente. Sant’Andrea al Quirinale rappresenta quindi la sintesi perfetta della poetica di Bernini: l’unione tra architettura, arte e fede.",
+          "immagine": "https://it.wikipedia.org/wiki/Chiesa_di_Sant%27Andrea_al_Quirinale",
+          "immagine_interno": "https://lasinodoro.it/bernini-a-santandrea-al-quirinale-trionfo-barocco/",
+          "indicazioni_arrivo": "Da Hostaria Romana: passeggiata a piedi.",
+          "tempo_spostamento_da_tappa_precedente": {
+            "a_piedi": "8 min",
+            "distanza_km": 0.5
+          },
+          "esperienza_culturale": {
+            "informazioni": {
+              "data": "1658-1670",
+              "stile_architettonico": "Barocco",
+              "coordinate": "41°54′02″N 12°29′22″E",
+              "curiosità": "Ancora oggi è considerata uno dei capolavori assoluti del Barocco e un esempio emblematico della capacità dell’artista di trasformare lo spazio in emozione. Per Bernini, quest’opera aveva un significato speciale: la considerava una delle sue realizzazioni più riuscite, perché in essa riuscì a esprimere pienamente la sua idea di arte come fusione tra architettura, scenografia e spiritualità. "
+            }
+          },
+          "metadata": {
+            "accessibilita": "ingresso gratuito",
+            "orari_standard": "La chiesa è aperta dal martedì alla domenica: ore 9:00-12:00 e 15:00-18:00 (lunedì: giorno di chiusura)"
+          }
+        },
+        {
+          "numero": 4,
+          "poi_id": "Chiesa_di_Santa_Bibiana",
+          "orario_consigliato": "16:15",
+          "momento_giornata": "pomeriggio",
+          "durata_visita_min": 45,
+          "nome": "Chiesa di Santa Bibiana",
+          "descrizione_breve": "L'intervento nella Chiesa di Santa Bibiana (1624-1626) segna l'esordio architettonico di Gian Lorenzo Bernini sotto il pontificato di Urbano VIII. L'atmosfera che si respira è quella di una transizione epocale: la chiesa, di impianto paleocristiano, viene rifunzionalizzata per diventare il primo grande cantiere barocco coordinato da un'unica mente regista. Non si tratta più di una semplice ristrutturazione, ma della creazione di uno spazio scenico dove la luce naturale e l'architettura cooperano per esaltare il messaggio spirituale. Al suo interno, la Chiesa ospita la statua di Santa Bibiana",
+          "indicazioni_arrivo": "Da Chiesa di Sant'Andrea al Quirinale il percorso prosegue a piedi verso la Chiesa di Santa Bibiana. Lungo il tragitto si incontrano altri due luoghi d'interesse importanti: la maestosa facciata di Palazzo Barberini, capolavoro di innovazione berniniana, e la Basilica Papale di Santa Maria Maggiore, la quale ospita la tomba dell'artista.",
+          "tempo_spostamento_da_tappa_precedente": {
+            "a_piedi": "Da Sant'Andrea al Quirinale a Palazzo Barberini 15 min a piedi (qui è prevista una sosta di 15 min); Da Palazzo Barberini alla Basilica di Santa Maria Maggiore 15 min a piedi (con sosta della durata di 15 minuti). Infine, altri 15 min a piedi per raggiungere la Chiesa di Santa Bibiana",
+            "distanza_km": 2.5
+          },
+          "esperienza_culturale": {
+            "Statua di Santa Bibiana": {
+              "data": "1624-1626",
+              "materiale": "Marmo",
+              "dimensioni": "185 x 86 x 55 cm",
+              "coordinate": "41°53′43.99″N 12°30′33.08″E",
+              "descrizione": "Sopra l’altare maggiore, la statua della Santa è il motore visivo dell’intera chiesa. Bernini fonde scultura e architettura in un'edicola monumentale, dove la luce naturale esalta ogni vibrazione del marmo.",
+              "immagine": "https://it.wikipedia.org/wiki/Santa_Bibiana_%28Bernini%29"
+            }
+          },
+          "metadata": {
+            "accessibilita": "Ingresso gratuito",
+            "orari_standard": "Tutti i giorni dalle ore 08:30 alle ore 12:00 e dalle ore 16:00 alle ore 18:00. La domenica è visitabile, tranne durante le celebrazioni religiose",
+            "informazioni utili": "E' richiesto un abbigliamento adeguato ed è consentito fotografare"
+          }
+        }
+      ],
+      "mappa_percorso": {
+        "percorso": "https://www.google.com/maps/d/u/0/edit?mid=1Ta6GgF9TqtooakTHHCFVa_E1xx5U9QY&usp=sharing"
+      },
+      "consigli_pratici": [
+        "Portare bottiglia d'acqua riutilizzabile (fontanelle romane lungo il percorso)",
+        "Scarpe comode (5 km a piedi)",
+        "Cappello e crema solare",
+        "Prenotare in anticipo Galleria Borghese"
+      ],
+      "migliore_periodo_anno": "Marzo-Maggio o Settembre-Ottobre (luce migliore, temperature miti)",
+      "sconsigliato": ["Piena estate (troppo caldo a mezzogiorno)", "Gennaio-Febbraio"],
+      "cosa_portare": [
+        "Smartphone",
+        "Cuffie/auricolari",
+        "Bottiglia acqua",
+        "Cappello",
+        "Crema solare",
+        "Caricatore portatile"
+      ]
+    }
+  ]
+}

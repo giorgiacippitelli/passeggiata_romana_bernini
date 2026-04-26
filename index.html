@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bernini: Le Chiese di Roma - Itinerario Completo</title>
+   
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+   
+    <style>
+        :root { --primary: #c0392b; --dark: #2c3e50; --bg: #fdfaf7; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: var(--bg); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+        /* Header modificato per ospitare il tasto Home */
+        header { 
+            background: var(--dark); 
+            color: white; 
+            padding: 15px 25px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+            z-index: 100; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+
+        .btn-home-nav {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+        .btn-home-nav:hover { background: rgba(255,255,255,0.2); }
+
+        .main-container { display: flex; flex: 1; overflow: hidden; }
+        #sidebar { width: 350px; background: white; border-right: 1px solid #ddd; overflow-y: auto; padding: 20px; }
+        .step-item { padding: 15px; margin-bottom: 10px; border-radius: 8px; background: #f9f9f9; border-left: 5px solid #ccc; cursor: pointer; transition: 0.3s; }
+        .step-item.active { border-left-color: var(--primary); background: #fff5f4; font-weight: bold; }
+        #content-area { flex: 1; display: flex; flex-direction: column; overflow-y: auto; background: white; }
+        #map { height: 350px; width: 100%; border-bottom: 3px solid var(--primary); flex-shrink: 0; background: #ddd; }
+        .details-padding { padding: 30px; max-width: 900px; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #eee; }
+        .opera-card { background: #fff; border: 1px solid #eee; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-top: 3px solid var(--primary); }
+        .label { font-weight: bold; color: var(--dark); font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 5px; }
+        .nav-buttons { display: flex; gap: 15px; margin-top: 30px; padding-bottom: 50px; }
+        button { padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-next { background: var(--primary); color: white; flex: 2; }
+        .btn-prev { background: #eee; color: #666; flex: 1; }
+        button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        /* STILI SCHERMATA HOME */
+        #home-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg); z-index: 2000; display: flex;
+            justify-content: center; align-items: center; overflow-y: auto;
+        }
+        .home-card {
+            background: white; border-radius: 20px; width: 90%; max-width: 800px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); overflow: hidden; margin: 20px;
+        }
+        .home-card-img { width: 100%; height: 350px; object-fit: cover; }
+        .home-card-body { padding: 40px; text-align: center; }
+        .btn-start-tour { 
+            background: #4e342e; color: white; padding: 15px 40px; 
+            border-radius: 12px; border: none; font-weight: bold; 
+            font-size: 1.1rem; cursor: pointer; margin-top: 20px;
+        }
+        @media (max-width: 900px) { .main-container { flex-direction: column; } #sidebar { width: 100%; height: 150px; } }
+    </style>
+</head>
+<body>
+
+<div id="home-overlay">
+    <div class="home-card">
+        <img class="home-card-img" src="foto.jpg" alt="Estasi di Santa Teresa">
+        <div class="home-card-body">
+            <h2 style="font-size: 2.2rem; margin-bottom: 10px; color: #1a1512;">Gian Lorenzo Bernini</h2>
+            <p style="color: #c0392b; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">Il Genio del Marmo</p>
+            <p style="line-height: 1.8; color: #444; margin-bottom: 30px; text-align: justify;">
+                Benvenuti in un viaggio immersivo nella Roma del Seicento. Scoprite come Bernini ha trasformato il marmo in carne e le chiese in teatri sacri. Questo itinerario vi guiderà tra i suoi capolavori più celebri, svelando l'anima barocca della Città Eterna.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+                <div style="text-align: center;"><strong style="display: block; font-size: 1.2rem;">6</strong><span style="font-size: 0.7rem; color: #999; text-transform: uppercase;">Tappe</span></div>
+                <div style="text-align: center;"><strong style="display: block; font-size: 1.2rem;">8h</strong><span style="font-size: 0.7rem; color: #999; text-transform: uppercase;">Durata</span></div>
+                <div style="text-align: center;"><strong style="display: block; font-size: 1.2rem;">Barocco</strong><span style="font-size: 0.7rem; color: #999; text-transform: uppercase;">Stile</span></div>
+            </div>
+            <button class="btn-start-tour" onclick="chiudiHome()">Inizia l'Itinerario →</button>
+        </div>
+    </div>
+</div>
+
+<header>
+    <h1>🏛️ Bernini: Le Chiese di Roma</h1>
+    <p style="font-size: 0.9rem; opacity: 0.8;">Roma Barocca: Sulle tracce di Gian Lorenzo Bernini</p>
+    </div>
+    <button class="btn-home-nav" onclick="mostraHome()">🏠 HOME</button>
+</header>
+
+<div class="main-container">
+    <aside id="sidebar">
+        <div id="bio-box" style="font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5; color: #555; font-style: italic;"></div>
+        <h3 style="margin-bottom: 10px; font-size: 1.1rem;">Tappe dell'itinerario</h3>
+        <div id="lista-tappe"></div>
+    </aside>
+
+    <main id="content-area">
+        <div id="map"></div>
+        <div class="details-padding">
+            <h2 id="t-nome" style="font-size: 2rem; color: var(--dark);"></h2>
+            <p id="t-ora" style="color: var(--primary); font-weight: bold; margin-bottom: 15px;"></p>
+           
+            <p id="t-desc" style="line-height: 1.8; font-size: 1.1rem; color: #444;"></p>
+
+            <div class="info-grid">
+                <div>
+                    <span class="label">📍 Indicazioni Arrivo</span>
+                    <p id="t-arrivo" style="font-size: 0.9rem;"></p>
+                </div>
+                <div>
+                    <span class="label">🎟️ Accessibilità & Info Ingressi</span>
+                    <p id="t-accesso" style="font-size: 0.9rem;"></p>
+                </div>
+                <div>
+                    <span class="label">🕒 Orari Standard</span>
+                    <p id="t-orari" style="font-size: 0.9rem;"></p>
+                </div>
+                <div>
+                    <span class="label">ℹ️ Servizi & Dettagli</span>
+                    <p id="t-metadata" style="font-size: 0.9rem;"></p>
+                </div>
+            </div>
+
+            <div id="opere-container">
+                <h3 id="titolo-opere" style="margin: 25px 0 15px 0;"></h3>
+                <div id="lista-opere"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <button id="btnPrev" class="btn-prev" onclick="cambiaTappa(-1)">Indietro</button>
+                <button id="btnNext" class="btn-next" onclick="cambiaTappa(1)">Prossima Tappa</button>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    const dati = {
+        "biografia": "Protagonista assoluto del Barocco romano, Bernini ha trasformato il marmo in materia viva, infondendo dinamismo e una profonda carica teatrale in ogni sua creazione.",
+        "tappe": [
+            {
+                "nome": "Galleria Borghese - I capolavori scultorei",
+                "ora": "09:00",
+                "lat": 41.9141, "lng": 12.4921,
+                "desc": "Costruita nel XVII secolo come residenza del cardinale Scipione Borghese, ospita una straordinaria collezione di dipinti e sculture barocche.",
+                "arrivo": "A piedi dal centro (Pincio/Via Veneto), Metro A (Flaminio o Spagna) con passeggiata nel parco o Bus 490/495. Arrivare 30 min prima.",
+                "accesso": "Ticket 18,00€ (eccetto prima domenica del mese). Prenotazione obbligatoria.",
+                "orari": "09:00-19:00, dal martedì alla domenica (ultimo ingresso 17:45).",
+                "servizi": "Toilette, guardaroba, bookshop, audioguide, caffetteria.",
+                "opere": {
+                    "Apollo e Dafne": "La ninfa si trasforma in alloro nel momento in cui viene raggiunta da Apollo. Marmo, 243 cm.",
+                    "Ratto di Proserpina": "Plutone affonda le dita nella coscia di Proserpina; straordinaria morbidezza della carne nel marmo.",
+                    "David": "Rappresentato in piena azione, avvitato su se stesso nel momento di massima tensione."
+                }
+            },
+            {
+                "nome": "Chiesa di Santa Maria della Vittoria",
+                "ora": "11:20",
+                "lat": 41.9045, "lng": 12.4942,
+                "desc": "Un gioiello del Barocco trasformato in palcoscenico teatrale grazie all'Estasi di Santa Teresa d'Avila.",
+                "arrivo": "Da Galleria Borghese: 25 min a piedi (1.2 km).",
+                "accesso": "Ingresso gratuito. Durata visita: circa 60 min.",
+                "orari": "Tutti i giorni 08:30-12:00 / 16:00-18:00 (evitare celebrazioni religiose).",
+                "servizi": "Richiesto abbigliamento adeguato (spalle e ginocchia coperte). Consentito fotografare.",
+                "opere": {
+                    "Estasi di Santa Teresa d'Avila": "Capolavoro di intensità emotiva e sensualità (1647-1652). Marmo e bronzo dorato."
+                }
+            },
+            {
+                "nome": "Pausa Pranzo: Hosteria Romana",
+                "ora": "12:10",
+                "lat": 41.9030, "lng": 12.4900,
+                "desc": "La pausa pranzo permette di scoprire i sapori autentici di Roma: amatriciana, carbonara e cacio e pepe.",
+                "arrivo": "Da Chiesa di S. Maria della Vittoria: 10 min a piedi (0.8 km).",
+                "accesso": "Menù alla carta. Fortemente consigliata la prenotazione.",
+                "orari": "Martedì-Sabato: Pranzo e Cena. Lunedì: solo Cena. Domenica: CHIUSO.",
+                "servizi": "Ristorazione tipica, Servizi igienici, Wi-Fi.",
+                "opere": {
+                    "Esperienza Culinaria": "Amatriciana, Carbonara, Cacio e Pepe e Maritozzo con la panna."
+                }
+            },
+            {
+                "nome": "Chiesa di Sant'Andrea al Quirinale",
+                "ora": "14:15",
+                "lat": 41.9006, "lng": 12.4896,
+                "desc": "Una piccola chiesa, un grande spettacolo barocco. Bernini la considerava una delle sue opere più riuscite.",
+                "arrivo": "Da Hosteria Romana: 8 min a piedi (0.5 km). La visita termina alle ore 15:00.",
+                "accesso": "Ingresso gratuito. Durata visita: circa 45 min.",
+                "orari": "Martedì-Domenica: 09:00-12:00 e 15:00-18:00. Lunedì: CHIUSO.",
+                "servizi": "Sintesi perfetta tra architettura, arte e fede.",
+                "opere": {
+                    "L'interno Ellittico": "Progettata come un teatro sacro per guidare il visitatore in un percorso spirituale."
+                }
+            },
+            {
+                "nome": "Palazzo Barberini (Esterno)",
+                "ora": "15:15",
+                "lat": 41.9033, "lng": 12.4898,
+                "desc": "Lungo il tragitto si ammira la maestosa facciata di Palazzo Barberini, capolavoro di innovazione berniniana che integra magnificamente lo stile barocco nel tessuto urbano. Sebbene il progetto sia passato per le mani di Maderno e Borromini, è stato Gian Lorenzo Bernini a firmarne la fase culminante (dal 1629), imprimendo al palazzo quel carattere teatrale e maestoso che lo contraddistingue",
+                "arrivo": "Da Sant'Andrea al Quirinale: 15 min a piedi.",
+                "accesso": "Visione esterna della facciata monumentale.",
+                "orari": "Sosta prevista di 15 minuti.",
+                "servizi": "Area monumentale, accessibile h24 dall'esterno.",
+                "opere": {
+                    "La Facciata": "Progetto che vide la collaborazione tra Maderno, Bernini e Borromini."
+                }
+            },
+            {
+                "nome": "Basilica Papale di Santa Maria Maggiore",
+                "ora": "15:45",
+                "lat": 41.8975, "lng": 12.4984,
+                "desc": "Una delle quattro basiliche papali di Roma. Luogo fondamentale dell'itinerario perché ospita la tomba di Gian Lorenzo Bernini. Chi si sofferma su quella pietra non vede solo una tomba, ma coglie l'essenza stessa dell'artista: un uomo che,dopo aver dato forma all’infinito, ha riscoperto la pace nella terra, lasciando che fosse Roma stessa, con le sue piazze e i suoi altari, a farne il monumento eterno.",
+                "arrivo": "Da Palazzo Barberini: 15 min a piedi.",
+                "accesso": "Ingresso gratuito (previo controllo sicurezza).",
+                "orari": "Tutti i giorni 07:00 - 18:45.",
+                "servizi": "Sito religioso, richiesto abbigliamento consono.",
+                "opere": {
+                    "Tomba di Bernini": "Sulla lastra tombale si legge una frase in latino piena di significato:IOANNES LAVRENTIVS BERNINI, DECVS ARTIVM ET VRBIS, HIC HVMILITER QVIESCIT (Gian Lorenzo Bernini, onore delle arti e della città, qui riposa umilmente)"
+                }
+            },
+            {
+                "nome": "Chiesa di Santa Bibiana",
+                "ora": "16:15",
+                "lat": 41.8950, "lng": 12.5090,
+                "desc": "Il gioiello nascosto che segna il debutto del Bernini architetto. Qui il giovane genio definisce i canoni del Barocco romano.",
+                "arrivo": "Da Santa Maria Maggiore: 15 min a piedi (via Giovanni Giolitti).",
+                "accesso": "Ingresso gratuito. Durata visita: circa 45 min.",
+                "orari": "Tutti i giorni 08:30-12:00 / 16:00-18:00.",
+                "servizi": "Richiesto abbigliamento adeguato. Consentito fotografare.",
+                "opere": {
+                    "Statua di Santa Bibiana": "Il motore visivo dell'intera chiesa; fonde scultura e architettura (1624-1626)."
+                }
+            }
+        ]
+    };
+
+    let indiceAttuale = 0;
+    let mappa, marker, percorsoLinea; 
+    let markers = [];
+
+    function init() {
+        document.getElementById('bio-box').innerText = dati.biografia;
+        mappa = L.map('map').setView([41.9028, 12.4964], 14);
+       
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(mappa);
+
+        const coordinateTappe = dati.tappe.map(t => [t.lat, t.lng]);
+        percorsoLinea = L.polyline(coordinateTappe, {
+            color: '#c0392b', 
+            weight: 4,        
+            opacity: 0.6,     
+            dashArray: '10, 10'
+        }).addTo(mappa);
+
+        dati.tappe.forEach((tappa, i) => {
+            const m = L.marker([tappa.lat, tappa.lng])
+                .addTo(mappa)
+                .bindPopup(`<b>${tappa.nome}</b><br>Tappa ${i + 1}`);
+            
+            markers.push(m); // Li salviamo nell'array
+        });
+
+        setTimeout(() => { mappa.invalidateSize(); }, 500);
+        aggiornaUI();
+    }
+
+    function aggiornaUI() {
+        const t = dati.tappe[indiceAttuale];
+        document.getElementById('t-nome').innerText = t.nome;
+        document.getElementById('t-ora').innerText = "🕒 Orario previsto: " + t.ora;
+        document.getElementById('t-desc').innerText = t.desc;
+        document.getElementById('t-arrivo').innerText = t.arrivo;
+        document.getElementById('t-accesso').innerText = t.accesso;
+        document.getElementById('t-orari').innerText = t.orari;
+        document.getElementById('t-metadata').innerText = t.servizi;
+
+        document.getElementById('titolo-opere').innerText = (t.nome.includes("Pranzo")) ? "Sapori Tipici" : "Opere Principali";
+
+        let htmlOpere = "";
+        for (let opera in t.opere) {
+            htmlOpere += `
+                <div class="opera-card">
+                    <strong>${opera}</strong>
+                    <p style="font-size: 0.95rem; margin-top:5px; color: #555;">${t.opere[opera]}</p>
+                </div>`;
+        }
+        document.getElementById('lista-opere').innerHTML = htmlOpere;
+
+        if (marker) mappa.removeLayer(marker);
+        marker = L.marker([t.lat, t.lng]).addTo(mappa).bindPopup(t.nome).openPopup();
+        mappa.flyTo([t.lat, t.lng], 16);
+
+        const lista = document.getElementById('lista-tappe');
+        lista.innerHTML = "";
+        dati.tappe.forEach((tappa, i) => {
+            const div = document.createElement('div');
+            div.className = `step-item ${i === indiceAttuale ? 'active' : ''}`;
+            div.innerHTML = `<small>${tappa.ora}</small><br>${tappa.nome}`;
+            div.onclick = () => { indiceAttuale = i; aggiornaUI(); };
+            lista.appendChild(div);
+        });
+
+        document.getElementById('btnPrev').disabled = (indiceAttuale === 0);
+        document.getElementById('btnNext').disabled = (indiceAttuale === dati.tappe.length - 1);
+    }
+
+    function cambiaTappa(n) {
+        indiceAttuale += n;
+        aggiornaUI();
+    }
+
+    // FUNZIONI HOME
+    function mostraHome() {
+        document.getElementById('home-overlay').style.display = 'flex';
+    }
+
+    function chiudiHome() {
+        document.getElementById('home-overlay').style.display = 'none';
+        if(mappa) {
+            setTimeout(() => { mappa.invalidateSize(); }, 300);
+        }
+    }
+
+    window.onload = init;
+</script>
+
+</body>
+</html>
